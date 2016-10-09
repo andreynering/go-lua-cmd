@@ -4,22 +4,23 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Shopify/go-lua"
+	"github.com/yuin/gopher-lua"
 )
 
 func main() {
 	args := os.Args[1:]
+
 	if len(args) == 0 {
 		fmt.Println("Error: not argument given")
 		os.Exit(1)
 	}
 
-	file := args[0]
+	fileName := args[0]
 
 	l := lua.NewState()
-	lua.OpenLibraries(l)
+	defer l.Close()
 
-	if err := lua.DoFile(l, file); err != nil {
+	if err := l.DoFile(fileName); err != nil {
 		fmt.Printf("%v\n", err)
 		os.Exit(1)
 	}
