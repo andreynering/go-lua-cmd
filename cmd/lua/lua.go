@@ -11,7 +11,7 @@ func main() {
 	args := os.Args[1:]
 
 	if len(args) == 0 {
-		fmt.Println("Error: not argument given")
+		fmt.Println("Error: no argument given")
 		os.Exit(1)
 	}
 
